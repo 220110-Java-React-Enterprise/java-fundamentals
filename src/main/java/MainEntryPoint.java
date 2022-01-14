@@ -1,9 +1,17 @@
-import java.util.ArrayList;
+import com.sun.istack.internal.NotNull;
 
-public class MainEntryPoint {
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.*;
+import java.util.List;
+
+
+public class MainEntryPoint{
     //Almost every program will need a main method, and everything in java exists inside a class.
     //Here's our main method, note that the signature will almost always be exactly this:
-    public static void main(String[] args) {
+    public static void main(String ...args) {
         //public because it must be accessible from outside this file
         //static because we aren't yet instantiating objects, so it must be associated with the class itself
         //void because the main method never returns anything
@@ -31,7 +39,6 @@ public class MainEntryPoint {
         //We can then change this object later, this is polymorphism.
         //(This is a very basic example that frankly serves no purpose.
         myPetJimmy = new Cat("Jimmy");
-
 
 
 
@@ -64,6 +71,94 @@ public class MainEntryPoint {
         myArrayList.add(myInteger);
 
 
+        String str1 = "my string";
+        str1 = str1.concat(" is the best!");
+
+        int[] myArr = new int[]{0,1,2};
+        System.out.println(myArr.length);//3   n   0 - n-1
+
+
+
+
+        //runtime polymorphism
+        List<String> ourClass = new ArrayList<>();
+        ourClass.add("Tiffany");
+        ourClass.add("Ahmad");
+        ourClass.add("Alvin");
+
+        List<String> tempList = new LinkedList<>();
+        for (String str : ourClass) {
+            tempList.add(str);
+        }
+        ourClass = tempList;
+
+        //ourClass is now a reference to a linkedlist
+        ourClass.forEach(happyfacesunhinetimes -> System.out.println(happyfacesunhinetimes));
+
+
+//        //Exceptions:
+//        try {
+//            myPetJimmy.throwAnimalException(false);
+//
+//        } catch(AnimalException | AnotherException e) {
+//            //we can totally nest exceptions into the catch blocks, we just have to handle them in their own try/catch
+//            try {
+//                throw new Exception("nested exception thrown inside try block!!!");
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//            }
+//            e.printStackTrace();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        finally {
+//            System.out.println("This is the finally block");
+//        }
+
+        String myString = "test";
+        if(myString.equals("test")) {
+            //this would be true!
+        }
+
+        Thingy myThingy = Thingy.THINGY;
+
+        if(myThingy.equals(Thingy.THINGY)) {
+            System.out.println("Thingy!!!");
+        }
+
+        List<List<Integer>> myListOfLists = new ArrayList<>();
+        List<Integer> myIntList = new LinkedList<>();
+        myListOfLists.add(myIntList);
+
+        Scanner sc = new Scanner(System.in);
+        //System.out.printf("Scanner stuff: \n\n\n\n\n\n\n Enter your name: ");
+        //String name = sc.nextLine();
+
+        //System.out.println("Your name is: " + name);
+        //System.out.printf("Your name is: %s\n", name);
+        System.out.printf("Some numbers: %s, %d, %f\n", "one", 1, 1.0f);
+        System.out.printf("$%.2f\n", 55.55f);
+        System.out.println("Account Bal: $" + 55.55f + ". Have a nice day!");
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("file.txt"));
+            bw.write("Hello, world!\n");
+            bw.write("This is a file called \n \\ \"file.txt\"\n");
+            bw.close();
+
+            BufferedReader br = new BufferedReader(new FileReader("file.txt"));
+            int count = 0;
+            while(br.ready()) {
+                count++;
+                System.out.println(br.readLine());
+            }
+            System.out.println("count = " + count);
+            br.close();
+
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
 
 

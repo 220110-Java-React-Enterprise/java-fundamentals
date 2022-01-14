@@ -1,4 +1,4 @@
-public class Animal {//note here with no "extends" keyword, this class implicitly extends the Object class
+public abstract class Animal {//note here with no "extends" keyword, this class implicitly extends the Object class
 
     //note the use of protected keyword here. This is an access modifier like private and public.
     //protected means this is accessible by inheriting classes. private would mean it is only accessible
@@ -20,5 +20,15 @@ public class Animal {//note here with no "extends" keyword, this class implicitl
 
     public String getSound(){
         return sound;
+    }
+
+    public void throwAnimalException(boolean b) throws AnotherException, AnimalException {
+        if(b) {
+            AnimalException e = new AnimalException("AnimalException thrown");
+            throw e;
+        } else {
+            throw new AnotherException("AnotherException thrown");
+        }
+
     }
 }
